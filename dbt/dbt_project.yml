@@ -1,0 +1,18 @@
+name: npc_brain_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: npc_brain_analytics
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  npc_brain_analytics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

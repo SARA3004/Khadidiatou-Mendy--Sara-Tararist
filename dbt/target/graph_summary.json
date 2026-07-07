@@ -1,0 +1,1 @@
+{"_invocation_id": "dceac7bf-f204-4a13-ab62-6471e2d3a244", "linked": {"0": {"name": "source.npc_brain_analytics.bronze.simulation_turns", "type": "source", "succ": [2]}, "1": {"name": "model.npc_brain_analytics.gold_run_summary", "type": "model"}, "2": {"name": "model.npc_brain_analytics.stg_simulation_turns", "type": "model", "succ": [1]}}}

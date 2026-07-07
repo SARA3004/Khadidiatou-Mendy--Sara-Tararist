@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Benchmark NPC Brain — reporting</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+      --c1: #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+      --c1: #3987e5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px; background: var(--page); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .subtitle { color: var(--text-secondary); margin: 0 0 28px; font-size: 14px; }
+  .tiles { display: flex; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+  .tile {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 20px; min-width: 160px; flex: 1;
+  }
+  .tile-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .tile-value { font-size: 28px; font-weight: 600; margin-top: 4px; }
+  .tile-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  section {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; margin-bottom: 20px; overflow-x: auto;
+  }
+  section h2 { font-size: 15px; margin: 0 0 12px; }
+  .chart { width: 100%; height: auto; display: block; }
+  .grid { stroke: var(--grid); stroke-width: 1; }
+  .axis-label { fill: var(--muted); font-size: 10px; }
+  .legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .legend-item { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    text-align: left; color: var(--muted); font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .03em; padding: 8px 10px; border-bottom: 1px solid var(--grid);
+  }
+  .data-table td { padding: 8px 10px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  .empty { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+  <h1>Benchmark NPC Brain</h1>
+  <p class="subtitle">Reporting généré depuis la couche gold (dbt-duckdb) — à régénérer via <code>dbt run</code> + <code>python generate_report.py</code> après chaque nouveau run ou changement de règles.</p>
+
+  <div class="tiles">
+    
+    <div class="tile">
+        <div class="tile-label">Runs enregistrés</div>
+        <div class="tile-value">1</div>
+        <div class="tile-sub"></div>
+    </div>
+    
+    
+    <div class="tile">
+        <div class="tile-label">Taux de succès</div>
+        <div class="tile-value">100%</div>
+        <div class="tile-sub">1/1 runs ont ramassé l'or</div>
+    </div>
+    
+    
+    <div class="tile">
+        <div class="tile-label">Pas moyens jusqu'à l'or</div>
+        <div class="tile-value">1.0</div>
+        <div class="tile-sub">parmi les runs réussis</div>
+    </div>
+    
+  </div>
+
+  <section>
+    <h2>Nombre de pas pour ramasser l'or, par run</h2>
+    
+    <svg viewBox="0 0 640 260" class="chart" role="img" aria-label="Nombre de pas pour ramasser l'or, par run">
+        <line x1="40" y1="230.0" x2="620" y2="230.0" class="grid" /><text x="32" y="234.0" class="axis-label" text-anchor="end">0</text><line x1="40" y1="176.5" x2="620" y2="176.5" class="grid" /><text x="32" y="180.5" class="axis-label" text-anchor="end">0</text><line x1="40" y1="123.0" x2="620" y2="123.0" class="grid" /><text x="32" y="127.0" class="axis-label" text-anchor="end">0</text><line x1="40" y1="69.5" x2="620" y2="69.5" class="grid" /><text x="32" y="73.5" class="axis-label" text-anchor="end">1</text><line x1="40" y1="16.0" x2="620" y2="16.0" class="grid" /><text x="32" y="20.0" class="axis-label" text-anchor="end">1</text>
+        <rect x="316.0" y="16.0" width="28.0" height="214.0" rx="4" fill="var(--c1)" opacity="1"><title>mistralai/ministral-3-3b — run f2febaf9 — 1 pas pour ramasser l'or</title></rect>
+        <text x="330.0" y="246" class="axis-label" text-anchor="middle">f2feba</text>
+    </svg>
+    
+    <div class="legend"><span class="legend-item"><span class="swatch" style="background: var(--c1)"></span>mistralai/ministral-3-3b</span></div>
+  </section>
+
+  <section>
+    <h2>Distance à l'or le plus proche au fil des tours</h2>
+    
+    <svg viewBox="0 0 640 260" class="chart" role="img" aria-label="Distance à l'or le plus proche au fil des tours">
+        <line x1="40" y1="230.0" x2="620" y2="230.0" class="grid" /><text x="32" y="234.0" class="axis-label" text-anchor="end">0.0</text><line x1="40" y1="176.5" x2="620" y2="176.5" class="grid" /><text x="32" y="180.5" class="axis-label" text-anchor="end">0.2</text><line x1="40" y1="123.0" x2="620" y2="123.0" class="grid" /><text x="32" y="127.0" class="axis-label" text-anchor="end">0.5</text><line x1="40" y1="69.5" x2="620" y2="69.5" class="grid" /><text x="32" y="73.5" class="axis-label" text-anchor="end">0.8</text><line x1="40" y1="16.0" x2="620" y2="16.0" class="grid" /><text x="32" y="20.0" class="axis-label" text-anchor="end">1.0</text>
+        <path d="M620.0,16.0" fill="none" stroke="var(--c1)" stroke-width="2" stroke-linecap="round" /><circle cx="620.0" cy="16.0" r="3" fill="var(--c1)"><title>mistralai/ministral-3-3b — tour 1 — distance 1.0</title></circle>
+    </svg>
+    
+    <div class="legend"><span class="legend-item"><span class="swatch" style="background: var(--c1)"></span>mistralai/ministral-3-3b</span></div>
+  </section>
+
+  <section>
+    <h2>Détail par run</h2>
+    
+    <table class="data-table">
+        <thead><tr>
+            <th>Run</th><th>Modèle</th><th>Ruleset</th><th>Tours joués</th>
+            <th>Résultat</th><th>Pas pour l'or</th><th>Distance moy.</th>
+            <th>Déplacements bloqués</th><th>Échecs LLM</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+            <td>f2febaf9</td>
+            <td>mistralai/ministral-3-3b</td>
+            <td>single_gold_no_combat_v1</td>
+            <td>1</td>
+            <td>✅ ramassé</td>
+            <td>1</td>
+            <td>1.0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr></tbody>
+    </table>
+    
+  </section>
+</body>
+</html>

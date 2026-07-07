@@ -1,0 +1,7 @@
+npc_brain_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../warehouse/simulation.duckdb"
+      threads: 4

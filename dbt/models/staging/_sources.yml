@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Logs bruts de la simulation, un fichier parquet par run (couche bronze)"
+    tables:
+      - name: simulation_turns
+        description: "Un tour de jeu = une ligne (perception, décision LLM, résultat du déplacement)"
+        meta:
+          external_location: "../data/bronze/turns/*.parquet"
